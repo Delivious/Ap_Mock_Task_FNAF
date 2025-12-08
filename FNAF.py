@@ -20,3 +20,5 @@ while running:
     # Update the display
     pygame.display.flip() # or pygame.display.update()
 #^ Use of AI for pygame starter ^
+
+pygame.quit()
