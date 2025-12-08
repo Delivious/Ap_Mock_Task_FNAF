@@ -1,8 +1,7 @@
 import pygame
-import random
-import time
 pygame.init()
     
+
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
@@ -37,6 +36,8 @@ while running:
     time.sleep(.2)
     # Update the display
     pygame.display.flip() # or pygame.display.update()
-#^ Use of AI for pygame starter ^
+
+# ^ Use of AI for pygame starter ^
 
 pygame.quit()
+
