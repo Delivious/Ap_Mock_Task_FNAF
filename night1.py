@@ -64,6 +64,16 @@ class Anim: #Masons class and funcs
                     toMove=["Office", "EastHallCorner","EastHall"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                elif self._curRoom.lower()=="office":
+                    office=True
+                    if office=True:
+                        check=checkDoorEast()
+                        if check==True:
+                            jumpscare=False
+                            jumpFunc(jumpscare)
+                        else:
+                            jumpscare=True
+                            jumpFunc(jumpscare)
             elif self._animatronic == "Chica":
                 if self._curRoom.lower()=="showstage":
                     toMove=["Dining", "Restrooms"]
