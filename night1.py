@@ -25,7 +25,7 @@ class Anim: #Masons class and funcs
     def getRoom(self):
         return self._curRoom
     def getRooms(self):
-        return self._rooms=[]
+        return self._rooms
     def animatronicMove(difficulty, time):
         nums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
         while _6am == False:
@@ -89,6 +89,16 @@ class Anim: #Masons class and funcs
                     toMove=["Office", "EastHallCorner","EastHall"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                elif self._curRoom.lower()=="office":
+                    office=True
+                    if office=True:
+                        check=checkDoorEast()
+                        if check==True:
+                            jumpscare=False
+                            jumpFunc(jumpscare)
+                        else:
+                            jumpscare=True
+                            jumpFunc(jumpscare)
             elif self._animatronic == "Bonnie":
                 if self._curRoom.lower()=="showstage":
                     toMove=["Dining", "Backstage"]
@@ -114,12 +124,76 @@ class Anim: #Masons class and funcs
                     toMove=["Office","EastHall"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                elif self._curRoom.lower()=="office":
+                    office=True
+                    if office=True:
+                        check=checkDoorWest()
+                        if check==True:
+                            jumpscare=False
+                            jumpFunc(jumpscare)
+                        else:
+                            jumpscare=True
+                            jumpFunc(jumpscare)
             elif self._animatronic == "Foxy":
                 if self._curRoom.lower()=="piratecove":
-                    toMove=["PirateCove"]
+                    toMove=["PirateCove","Pirate1"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
-                
+                elif self._curRoom.lower()=="pirate1":
+                    toMove=["Pirate1","Pirate2"]
+                    whereMove=random.choice(toMove)
+                    self._curRoom=whereMove
+                elif self._curRoom.lower()=="pirate2":
+                    toMove=["Pirate2","Pirate3"]
+                    whereMove=random.choice(toMove)
+                    self._curRoom=whereMove
+                elif self._curRoom.lower()=="pirate3":
+                    toMove=["Pirate3","Running"]
+                    whereMove=random.choice(toMove)
+                    self._curRoom=whereMove
+                elif self._curRoom.lower()=="running":
+                    office=False
+                    counter=0
+                    while office==False:
+                        if counter!=5:
+                            counter+=1
+                            time.sleep(1)
+                        else:
+                            office=True
+                    if office=True:
+                        check=checkDoorWest()
+                        if check==True:
+                            jumpscare=False
+                            jumpFunc(jumpscare)
+                        else:
+                            jumpscare=True
+                            jumpFunc(jumpscare)
+def activateJump():
+    #placeholder for when ori makes the jumpscares
+def jumpFunc(jumpscare):
+    if jumpscare==True:
+        time.sleep(3)
+        activateJump()
+def closeWest(curState):
+    if curState==True:
+        return False
+    else:
+        return True
+def closeEast(curState):
+    if curState==True:
+        return False
+    else:
+        return True
+def checkDoorWest():
+    if closeWest() == False:
+        return True
+    else:
+        return False
+def checkDoorEast():
+    if closeEast() == False:
+        return True
+    else:
+        return False
 freddy=Anim("Freddy", 3, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
 chica=Anim("Chica", 3, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
 bonnie=Anim("Bonnie", 3, "ShowStage", ["ShowStage", "Dining", "Backstage", "SupplyCloset", "WestHall","WestHallCorner"])
