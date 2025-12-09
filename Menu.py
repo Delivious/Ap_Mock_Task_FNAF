@@ -59,12 +59,11 @@ while running:
         selected = CN()  # call Custom Night function
     elif keys[pygame.K_RETURN] or keys[pygame.K_KP_ENTER] and whereat==2:
         running = False  # exit menu
-        # Placeholder for Continue function 
+        # Placeholder for Continue function
 
     # ------------- Drawing ---------------
     screen.fill(BLACK)
-
-    # Random Freddy animation every 0.2 seconds
+    # Freddy animation
     freddy_timer += clock.get_time()
     if freddy_timer > 200:
         freddy_image = random.choice(freddy_list)
