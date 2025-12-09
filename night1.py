@@ -28,10 +28,10 @@ class Anim: #Masons class and funcs
         return self._rooms
     def animatronicMove(difficulty, time):
         nums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-        while _6am == False:
+        while sixam == False:
             time.sleep(5)
             isWalk = random.choice(nums)
-            if isWalk <= difficulty
+            if isWalk <= difficulty:
                 move=True
                 moveArea(move)
             else:
@@ -91,7 +91,7 @@ class Anim: #Masons class and funcs
                     self._curRoom=whereMove
                 elif self._curRoom.lower()=="office":
                     office=True
-                    if office=True:
+                    if office==True:
                         check=checkDoorEast()
                         if check==True:
                             jumpscare=False
@@ -126,7 +126,7 @@ class Anim: #Masons class and funcs
                     self._curRoom=whereMove
                 elif self._curRoom.lower()=="office":
                     office=True
-                    if office=True:
+                    if office==True:
                         check=checkDoorWest()
                         if check==True:
                             jumpscare=False
@@ -160,7 +160,7 @@ class Anim: #Masons class and funcs
                             time.sleep(1)
                         else:
                             office=True
-                    if office=True:
+                    if office==True:
                         check=checkDoorWest()
                         if check==True:
                             jumpscare=False
@@ -169,6 +169,7 @@ class Anim: #Masons class and funcs
                             jumpscare=True
                             jumpFunc(jumpscare)
 def activateJump():
+    print("JUMPSCARE ACTIVATED")
     #placeholder for when ori makes the jumpscares
 def jumpFunc(jumpscare):
     if jumpscare==True:
