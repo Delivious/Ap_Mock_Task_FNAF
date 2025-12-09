@@ -1,9 +1,11 @@
 import pygame
+import time
+import random
 pygame.init()
-    
+# All images found on google images, the FNAF characters are property of Scott Cawthon and used for educational purposes only.    
 
-screen_width = 800
-screen_height = 600
+screen_width = 2500
+screen_height = 1500
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("My Pygame Window")
 freddy1=pygame.image.load("freddy1.png")
@@ -21,20 +23,19 @@ while running:
     # Game logic (e.g., update object positions)
 
     # Drawing
-    screen.blit(freddy1, (0,0))
-    time.sleep(.2)
-    pygame.display.update()
-    screen.blit(freddy2, (0,0))
-    time.sleep(.4)
-    pygame.display.update()
-    screen.blit(freddy3, (0,0))
-    time.sleep(.2)
-    pygame.display.update()
-    screen.blit(freddy4, (0,0))
-    time.sleep(.1)
-    pygame.display.update()
-    time.sleep(.2)
-    # Update the display
+    while True:
+        fred=random.randint(1,4)
+        if fred==1:
+            screen.blit(freddy1,(500,0))
+        elif fred==2:
+            screen.blit(freddy2,(500,0))
+        elif fred==3:
+            screen.blit(freddy3,(500,0))
+        elif fred==4:
+            screen.blit(freddy4,(500,0))
+        pygame.display.update()       
+        time.sleep(0.2)
+
     pygame.display.flip() # or pygame.display.update()
 
 # ^ Use of AI for pygame starter ^
