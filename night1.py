@@ -66,7 +66,7 @@ class Anim: #Masons class and funcs
                     self._curRoom=whereMove
                 elif self._curRoom.lower()=="office":
                     office=True
-                    if office=True:
+                    if office==True:
                         check=checkDoorEast()
                         if check==True:
                             jumpscare=False
