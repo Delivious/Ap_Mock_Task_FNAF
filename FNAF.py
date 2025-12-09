@@ -1,4 +1,6 @@
 import pygame
+import random 
+import time
 pygame.init()
 # All images found on google images, the FNAF characters are property of Scott Cawthon and used for educational purposes only.    
 
