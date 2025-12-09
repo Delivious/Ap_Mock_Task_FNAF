@@ -2,6 +2,7 @@ import pygame
 import time
 import threading
 import random
+import sys
 # https://www.youtube.com/watch?v=MwbXp6_C5i8 is the link to the video for threading and running multiple functions concurrently
 pygame.init()
 class Anim: #Masons class and funcs
@@ -26,9 +27,10 @@ class Anim: #Masons class and funcs
         return self._curRoom
     def getRooms(self):
         return self._rooms
-    def animatronicMove(self, difficulty, time):
+    def animatronicMove(self, difficulty, sixam=False):
+        global gameGo
         nums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-        while sixam == False:
+        while gameGo == True:
             time.sleep(5)
             isWalk = random.choice(nums)
             if isWalk <= difficulty:
@@ -36,131 +38,153 @@ class Anim: #Masons class and funcs
                 self.moveArea(move)
             else:
                 move=False
-                placeholder=self.moveArea(move)
+                self.moveArea(move)
+        if sixam==True:
+            print("Its 6am")
     def moveArea(self, move):
+        """allows animatronics to move"""
         if move == True:
             if self._animatronic == "Freddy":
                 if self._curRoom.lower()=="showstage":
                     toMove=["Dining", "Restrooms"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="dining":
                     toMove=["EastHall", "Restrooms", "Kitchen", "Dining"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="kitchen":
                     toMove=["Dining", "EastHall", "Kitchen"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
-                elif self._curRoom.lower()=="restroom":
-                    toMove=["Dining", "Kitchen", "Restroom"]
+                    print(f"{self._animatronic} is in {self._curRoom}")
+                elif self._curRoom.lower()=="restrooms":
+                    toMove=["Dining", "Kitchen", "Restrooms"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="easthall":
-                    toMove=["Dining", "EastHallCorner","EastHall"]
+                    toMove=["EastHallCorner","EastHall"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="easthallcorner":
-                    toMove=["Office", "EastHallCorner","EastHall"]
+                    toMove=["Office", "EastHallCorner"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="office":
                     office=True
                     if office==True:
                         check=checkDoorEast()
                         if check==True:
                             jumpscare=False
-                            jumpFunc(jumpscare)
                         else:
                             jumpscare=True
-                            jumpFunc(jumpscare)
+                            jumpFunc(jumpscare, self._animatronic)
             elif self._animatronic == "Chica":
                 if self._curRoom.lower()=="showstage":
-                    toMove=["Dining", "Restrooms"]
+                    toMove=["Dining", "Restroom"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="dining":
-                    toMove=["EastHall", "Restrooms", "Kitchen", "Dining"]
+                    toMove=["EastHall", "Restroom", "Kitchen", "Dining"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="kitchen":
                     toMove=["Dining", "EastHall", "Kitchen"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="restroom":
                     toMove=["Dining", "Kitchen", "Restroom"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="easthall":
-                    toMove=["Dining", "EastHallCorner","EastHall"]
+                    toMove=["EastHallCorner","EastHall"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="easthallcorner":
-                    toMove=["Office", "EastHallCorner","EastHall"]
+                    toMove=["Office", "EastHallCorner"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="office":
                     office=True
                     if office==True:
                         check=checkDoorEast()
                         if check==True:
                             jumpscare=False
-                            jumpFunc(jumpscare)
                         else:
                             jumpscare=True
-                            jumpFunc(jumpscare)
+                            jumpFunc(jumpscare, self._animatronic)
             elif self._animatronic == "Bonnie":
                 if self._curRoom.lower()=="showstage":
                     toMove=["Dining", "Backstage"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="dining":
                     toMove=["WestHall", "BackStage", "Dining"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="backstage":
                     toMove=["Dining", "WestHall", "Dining"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="westhall":
-                    toMove=["Dining", "WestHallCorner", "SupplyCloset"]
+                    toMove=["WestHall", "WestHallCorner", "SupplyCloset"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="westhallcorner":
-                    toMove=["Office", "EastHallCorner","westhall"]
+                    toMove=["Office", "EastHallCorner"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="supplycloset":
-                    toMove=["Office","EastHall"]
+                    toMove=["EastHallCorner","EastHall","SupplyCloset"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="office":
                     office=True
                     if office==True:
                         check=checkDoorWest()
                         if check==True:
                             jumpscare=False
-                            jumpFunc(jumpscare)
                         else:
                             jumpscare=True
-                            jumpFunc(jumpscare)
+                            jumpFunc(jumpscare, self._animatronic)
             elif self._animatronic == "Foxy":
                 if self._curRoom.lower()=="piratecove":
                     toMove=["PirateCove","Pirate1"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="pirate1":
                     toMove=["Pirate1","Pirate2"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="pirate2":
                     toMove=["Pirate2","Pirate3"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="pirate3":
                     toMove=["Pirate3","Running"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
+                    print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="running":
                     office=False
                     counter=0
@@ -174,60 +198,106 @@ class Anim: #Masons class and funcs
                         check=checkDoorWest()
                         if check==True:
                             jumpscare=False
-                            jumpFunc(jumpscare)
                         else:
                             jumpscare=True
-                            jumpFunc(jumpscare)
-def activateJump():
+                            jumpFunc(jumpscare, self._animatronic)
+def activateJump(name):
+    global gameGo
+    global animList
+    """Kills the game if you get jumpscared"""
     print("JUMPSCARE ACTIVATED")
+    gameGo=False
     #placeholder for when ori makes the jumpscares
-def jumpFunc(jumpscare):
+    running=False
+    if name == "Freddy":
+        foxyAI.join()
+        chicaAI.join()
+        bonnAI.join()
+    elif name == "Chica":
+        fredAI.join()
+        bonnAI.join()
+        foxyAI.join()
+    elif name == "Bonnie":
+        fredAI.join()
+        chicaAI.join()
+        foxyAI.join()
+    else:
+        fredAI.join()
+        chicaAI.join()
+        bonnAI.join()
+    sys.exit()
+    pygame.quit()
+def jumpFunc(jumpscare,name):
+    """Checks if you have been attacked by an animatronic"""
     if jumpscare==True:
         time.sleep(3)
-        activateJump()
-def closeWest(curState):
-    if curState==True:
+        activateJump(name)
+def closeWest():
+    """closes and opens left door"""
+    global westDoorState
+    if westDoorState==True:
         return False
     else:
         return True
-def closeEast(curState):
-    if curState==True:
+def closeEast():
+    """opens and closes right door"""
+    global eastDoorState
+    if eastDoorState==True:
         return False
     else:
         return True
 def checkDoorWest():
-    if closeWest() == False:
-        return True
-    else:
+    """checks if the left door is open or not"""
+    global westDoorState
+    if westDoorState == False:
         return False
+    else:
+        return True
 def checkDoorEast():
-    if closeEast() == False:
-        return True
-    else:
+    """checks if the right door is open or not"""
+    global eastDoorState
+    if eastDoorState == False:
         return False
-freddy=Anim("Freddy", 3, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
-chica=Anim("Chica", 3, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
-bonnie=Anim("Bonnie", 3, "ShowStage", ["ShowStage", "Dining", "Backstage", "SupplyCloset", "WestHall","WestHallCorner"])
-foxy=Anim("Foxy", 3, "PiratesCove", ["PiratesCove", "Dining", "WestHall","WestHallCorner"])
+    else:
+        return True
+
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("My Pygame Window")
-
+freddy = Anim("Freddy", 20, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
+chica = Anim("Chica", 20, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
+bonnie = Anim("Bonnie", 20, "ShowStage", ["ShowStage", "Dining", "Backstage", "SupplyCloset", "WestHall","WestHallCorner"])
+foxy = Anim("Foxy", 20, "PirateCove", ["PiratesCove", "Pirate1", "Pirate2","Pirate3","Running"])
+fredAI  = threading.Thread(target=freddy.animatronicMove, args=(freddy.getDiff(),))
+chicaAI = threading.Thread(target=chica.animatronicMove, args=(chica.getDiff(),))
+bonnAI  = threading.Thread(target=bonnie.animatronicMove, args=(bonnie.getDiff(),))
+foxyAI  = threading.Thread(target=foxy.animatronicMove, args=(foxy.getDiff(),))
+animList=[fredAI, chicaAI, bonnAI, foxyAI]
+eastDoorState = False
+westDoorState = False
+gameGo = True
 running = True
+fredAI.start()
+time.sleep(1)
+chicaAI.start()
+time.sleep(1)
+bonnAI.start()
+time.sleep(1)
+foxyAI.start()
+time.sleep(1)
 while running:
     # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT: # User clicked the close button
             running = False
-
+            
     # Game logic (e.g., update object positions)
-
     # Drawing
     screen.fill((0, 0, 0)) # Fill the screen with black (RGB)
     # Update the display
     pygame.display.flip() # or pygame.display.update()
 
-# ^ Use of AI for pygame starter ^
+#Use of AI for pygame starter, fixing threads args and stopping all threads
 
 pygame.quit()
