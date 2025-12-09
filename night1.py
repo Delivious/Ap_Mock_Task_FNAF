@@ -26,17 +26,17 @@ class Anim: #Masons class and funcs
         return self._curRoom
     def getRooms(self):
         return self._rooms
-    def animatronicMove(difficulty, time):
+    def animatronicMove(self, difficulty, time):
         nums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
         while sixam == False:
             time.sleep(5)
             isWalk = random.choice(nums)
             if isWalk <= difficulty:
                 move=True
-                moveArea(move)
+                self.moveArea(move)
             else:
                 move=False
-                placeholder=moveArea(move)
+                placeholder=self.moveArea(move)
     def moveArea(self, move):
         if move == True:
             if self._animatronic == "Freddy":
