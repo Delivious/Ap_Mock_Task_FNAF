@@ -74,8 +74,8 @@ def difficuties():
     screen2.blit(bonnie, (1300, 200))
     pygame.draw.rect(screen2, GREY, bonnieAdd)
     pygame.draw.rect(screen2, GREY, bonnieminus)
-    pygame.draw.lines(screen2, WHITE, False, [[872.5,610],[902,640],[872.5,610],[902,580]], 5)
-    pygame.draw.lines(screen2, WHITE, False, [[1162.5,610],[1132,640],[1162.5,610],[1132,580]], 5)
+    pygame.draw.lines(screen2, WHITE, False, [[1317.5,610],[1347,640],[1317.5,610],[1347,580]], 5)
+    pygame.draw.lines(screen2, WHITE, False, [[1622.5,610],[1592,640],[1622.5,610],[1592,580]], 5)
 
     # CLEAR number area (smaller, fits between the two grey rectangles)
     pygame.draw.rect(screen2, BLACK, (1385, 560, 180, 100))  
@@ -86,8 +86,8 @@ def difficuties():
     screen2.blit(foxy, (1750, 200))
     pygame.draw.rect(screen2, GREY, foxyAdd)
     pygame.draw.rect(screen2, GREY, foxyminus)
-    pygame.draw.lines(screen2, WHITE, False, [[872.5,610],[902,640],[872.5,610],[902,580]], 5)
-    pygame.draw.lines(screen2, WHITE, False, [[1162.5,610],[1132,640],[1162.5,610],[1132,580]], 5)
+    pygame.draw.lines(screen2, WHITE, False, [[1767.5,610],[1797,640],[1767.5,610],[1797,580]], 5)
+    pygame.draw.lines(screen2, WHITE, False, [[2082.5,610],[2038,640],[2082.5,610],[2038,580]], 5)
 
     # CLEAR number area (smaller, fits between the two grey rectangles)
     pygame.draw.rect(screen2, BLACK, (1835, 560, 180, 100))  

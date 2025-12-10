@@ -205,10 +205,12 @@ class Anim: #Masons class and funcs
                         else:
                             jumpscare=True                   
 def batteryDrain():
+    """drains the battery based on how many things are turned on"""
     global batteryStacks, _battery
     time.sleep(batteryStacks)
     _battery-=1
-def battery():
+def battery(): 
+    """checks how many things are turned on and using battery"""
     global westDoorState, eastDoorState, cameraState, eastLightState, westLightState, batteryStacks
     batteryList=[westDoorState,eastDoorState,cameraState,eastLightState,westLightState]
     batteryCounter=0
