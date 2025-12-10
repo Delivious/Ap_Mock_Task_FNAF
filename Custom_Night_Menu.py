@@ -12,18 +12,26 @@ freddy = pygame.image.load("fredder.png")
 bonnie = pygame.image.load("bonnie.png")
 chica = pygame.image.load("chica.png")
 foxy = pygame.image.load("froxy.png")
+
+fredname = font.render('Freddy', True, WHITE)
+
+
+
 fredAdd = pygame.Rect((400,560),(75,100))
 fredminus = pygame.Rect((665,560),(75,100))
 freddif=0
 
+chicaname = font.render('Chica', True, WHITE)
 chicaAdd = pygame.Rect((850,560),(75,100))
 chicaminus = pygame.Rect((1115,560),(75,100))
 chicadif=0
 
+bonniename = font.render('Bonnie', True, WHITE)
 bonnieAdd = pygame.Rect((1300,560),(75,100))
 bonnieminus = pygame.Rect((1565,560),(75,100))
 bonniedif=0
 
+foxyname = font.render('Foxy', True, WHITE)
 foxyAdd = pygame.Rect((1750,560),(75,100))
 foxyminus = pygame.Rect((2015,560),(75,100))
 foxydif=0

@@ -3,6 +3,7 @@ import time
 import threading
 import random
 import sys
+from Custom_Night_Menu import bonniedif, chicadif, foxydif, freddif
 fred = pygame.image.load("freddy1.png")
 # https://www.youtube.com/watch?v=MwbXp6_C5i8 is the link to the video for threading and running multiple functions concurrently
 pygame.init()
