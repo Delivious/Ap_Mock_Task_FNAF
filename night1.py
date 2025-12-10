@@ -43,6 +43,7 @@ class Anim: #Masons class and funcs
             print("Its 6am")
     def moveArea(self, move):
         """allows animatronics to move"""
+        global jumpscare
         if move == True:
             if self._animatronic == "Freddy":
                 if self._curRoom.lower()=="showstage":
@@ -81,9 +82,9 @@ class Anim: #Masons class and funcs
                         check=checkDoorEast()
                         if check==True:
                             jumpscare=False
+                            self._curRoom=jumpFunc(jumpscare, self._animatronic) 
                         else:
                             jumpscare=True
-                            jumpFunc(jumpscare, self._animatronic)
             elif self._animatronic == "Chica":
                 if self._curRoom.lower()=="showstage":
                     toMove=["Dining", "Restroom"]
@@ -121,9 +122,9 @@ class Anim: #Masons class and funcs
                         check=checkDoorEast()
                         if check==True:
                             jumpscare=False
+                            self._curRoom=jumpFunc(jumpscare, self._animatronic)      
                         else:
                             jumpscare=True
-                            jumpFunc(jumpscare, self._animatronic)
             elif self._animatronic == "Bonnie":
                 if self._curRoom.lower()=="showstage":
                     toMove=["Dining", "Backstage"]
@@ -161,9 +162,9 @@ class Anim: #Masons class and funcs
                         check=checkDoorWest()
                         if check==True:
                             jumpscare=False
+                            self._curRoom=jumpFunc(jumpscare, self._animatronic)     
                         else:
                             jumpscare=True
-                            jumpFunc(jumpscare, self._animatronic)
             elif self._animatronic == "Foxy":
                 if self._curRoom.lower()=="piratecove":
                     toMove=["PirateCove","Pirate1"]
@@ -198,40 +199,21 @@ class Anim: #Masons class and funcs
                         check=checkDoorWest()
                         if check==True:
                             jumpscare=False
+                            self._curRoom=jumpFunc(jumpscare, self._animatronic)                       
                         else:
-                            jumpscare=True
-                            jumpFunc(jumpscare, self._animatronic)
-def activateJump(name):
-    global gameGo
-    global animList
-    """Kills the game if you get jumpscared"""
-    print("JUMPSCARE ACTIVATED")
-    gameGo=False
-    #placeholder for when ori makes the jumpscares
-    running=False
-    if name == "Freddy":
-        foxyAI.join()
-        chicaAI.join()
-        bonnAI.join()
-    elif name == "Chica":
-        fredAI.join()
-        bonnAI.join()
-        foxyAI.join()
-    elif name == "Bonnie":
-        fredAI.join()
-        chicaAI.join()
-        foxyAI.join()
-    else:
-        fredAI.join()
-        chicaAI.join()
-        bonnAI.join()
-    sys.exit()
-    pygame.quit()
+                            jumpscare=True                   
+
 def jumpFunc(jumpscare,name):
     """Checks if you have been attacked by an animatronic"""
-    if jumpscare==True:
-        time.sleep(3)
-        activateJump(name)
+    if jumpscare==False:
+        if name == "Freddy":
+            return "ShowStage"
+        elif name == "Chica":
+            return "ShowStage"
+        elif name == "Bonnie":
+            return "ShowStage"
+        else:
+            return "PirateCove"
 def closeWest():
     """closes and opens left door"""
     global westDoorState
@@ -260,19 +242,31 @@ def checkDoorEast():
         return False
     else:
         return True
-
-screen_width = 800
-screen_height = 600
+def isKill():
+    global jumpscare
+    if jumpscare==True:
+        if freddy.getRoom().lower()=="office":
+            print("feddy jumpscare")
+        elif chica.getRoom().lower()=="office":
+            print("chicken jumpscare")
+        elif bonnie.getRoom().lower()=="office":
+            print("bon bon jumpscare")
+        else:
+            print("fox from smash bros jumpscare")
+        sys.exit()
+jumpscare=False
+screen_width = 2500
+screen_height = 1500
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("My Pygame Window")
 freddy = Anim("Freddy", 20, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
 chica = Anim("Chica", 20, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
 bonnie = Anim("Bonnie", 20, "ShowStage", ["ShowStage", "Dining", "Backstage", "SupplyCloset", "WestHall","WestHallCorner"])
 foxy = Anim("Foxy", 20, "PirateCove", ["PiratesCove", "Pirate1", "Pirate2","Pirate3","Running"])
-fredAI  = threading.Thread(target=freddy.animatronicMove, args=(freddy.getDiff(),))
-chicaAI = threading.Thread(target=chica.animatronicMove, args=(chica.getDiff(),))
-bonnAI  = threading.Thread(target=bonnie.animatronicMove, args=(bonnie.getDiff(),))
-foxyAI  = threading.Thread(target=foxy.animatronicMove, args=(foxy.getDiff(),))
+fredAI  = threading.Thread(target=freddy.animatronicMove, args=(freddy.getDiff(),), daemon=True)
+chicaAI = threading.Thread(target=chica.animatronicMove, args=(chica.getDiff(),), daemon=True)
+bonnAI  = threading.Thread(target=bonnie.animatronicMove, args=(bonnie.getDiff(),), daemon=True)
+foxyAI  = threading.Thread(target=foxy.animatronicMove, args=(foxy.getDiff(),), daemon=True)
 animList=[fredAI, chicaAI, bonnAI, foxyAI]
 eastDoorState = False
 westDoorState = False
@@ -291,8 +285,23 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: # User clicked the close button
             running = False
-            
+    isKill()
     # Game logic (e.g., update object positions)
+    pressed=pygame.key.get_pressed()
+    if pressed[pygame.K_LEFT]:
+        westDoorState=closeWest()
+        time.sleep(0.3)
+        if westDoorState==True:
+            print("West door Closed")
+        else:
+            print("West Door Opened")
+    elif pressed[pygame.K_RIGHT]:
+        eastDoorState=closeEast()
+        time.sleep(0.3)
+        if eastDoorState==True:
+            print("East door Closed")
+        else:
+            print("East Door Opened")
     # Drawing
     screen.fill((0, 0, 0)) # Fill the screen with black (RGB)
     # Update the display
