@@ -1,6 +1,5 @@
 import pygame
 import random
-from Custom_Night_Menu import CN
 
 pygame.init()
 # all images used are from FNAF and owned by Scott Cawthon, no copyright intended, this is for educational purposes only.
@@ -56,6 +55,8 @@ while running:
     # ENTER to select
     if keys[pygame.K_RETURN] or keys[pygame.K_KP_ENTER] and whereat==1:
         running = False  # exit menu
+        screen.fill(BLACK)
+        from Custom_Night_Menu import CN
         selected = CN()  # call Custom Night function
     elif keys[pygame.K_RETURN] or keys[pygame.K_KP_ENTER] and whereat==2:
         running = False  # exit menu
