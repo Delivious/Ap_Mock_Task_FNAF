@@ -1,9 +1,10 @@
 import pygame
 import random
-
+# Ori made all of this
 pygame.init()
 # all images used are from FNAF and owned by Scott Cawthon, no copyright intended, this is for educational purposes only.
 # Fonts
+
 font = pygame.font.SysFont('Arial', 72)
 five = font.render('Five', True, (255, 255, 255))
 nights = font.render('Nights', True, (255, 255, 255))
