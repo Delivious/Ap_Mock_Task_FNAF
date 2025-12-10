@@ -1,7 +1,7 @@
 import pygame
 
 pygame.init()
-
+# Ori made all of this
 screen_width = 2500
 screen_height = 1500
 WHITE = (255, 255, 255)
