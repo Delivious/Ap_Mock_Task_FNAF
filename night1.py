@@ -203,7 +203,18 @@ class Anim: #Masons class and funcs
                             self._curRoom=jumpFunc(jumpscare, self._animatronic)                       
                         else:
                             jumpscare=True                   
-
+def batteryDrain():
+    global batteryStacks, _battery
+    time.sleep(batteryStacks)
+    _battery-=1
+def battery():
+    global westDoorState, eastDoorState, cameraState, eastLightState, westLightState, batteryStacks
+    batteryList=[westDoorState,eastDoorState,cameraState,eastLightState,westLightState]
+    batteryCounter=0
+    for _battery in batteryList:
+        if _battery:
+            batteryCounter+=1
+    batteryStacks-=batteryCounter
 def jumpFunc(jumpscare,name):
     """Checks if you have been attacked by an animatronic"""
     if jumpscare==False:
@@ -255,7 +266,12 @@ def isKill():
         else:
             print("fox from smash bros jumpscare")
         sys.exit()
+cameraState=False
+batteryStacks=6
+eastLightState=False
+westLightState=False
 jumpscare=False
+_battery=100
 screen_width = 2500
 screen_height = 1500
 screen = pygame.display.set_mode((screen_width, screen_height))
