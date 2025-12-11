@@ -42,7 +42,7 @@ screen2 = pygame.display.set_mode((screen_width, screen_height))
 
 pygame.display.set_caption("Custom Night Menu")
 def difficuties():
-    global freddif, chicadif, foxydif, bonniedif   
+    global freddif, chicadif, foxydif, bonniedif, running
 
     # draw images and buttons
     screen2.blit(freddy, (400, 200))
@@ -139,10 +139,14 @@ def difficuties():
                     foxydif -= 1
             if ready.collidepoint(mouse_pos):
                 print(f"Starting night with difficulties - Freddy: {freddif}, Chica: {chicadif}, Bonnie: {bonniedif}, Foxy: {foxydif}")
-                pygame.quit()
+                running = False  # exit menu
+                screen2.fill(BLACK)
+                from night1 import settingup
+                settingup()  # call Custom Night function
 
 
 def CN():
+    global running
     running = True
     clock = pygame.time.Clock()
     while running:

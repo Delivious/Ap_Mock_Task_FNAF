@@ -3,10 +3,13 @@ import time
 import threading
 import random
 import sys
-from Custom_Night_Menu import bonniedif, chicadif, foxydif, freddif
+
 fred = pygame.image.load("freddy1.png")
-# https://www.youtube.com/watch?v=MwbXp6_C5i8 is the link to the video for threading and running multiple functions concurrently
+screen_width = 2500
+screen_height = 1500
 pygame.init()
+screen = pygame.display.set_mode((screen_width, screen_height))
+# https://www.youtube.com/watch?v=MwbXp6_C5i8 is the link to the video for threading and running multiple functions concurrently
 class Anim: #Masons class and funcs
     def __init__(self, animatronic, difficulty, curRoom, rooms):
         self._animatronic=animatronic
@@ -280,6 +283,7 @@ def isKill():
         else:
             print("fox from smash bros jumpscare")
         sys.exit()
+<<<<<<< HEAD
     elif _battery <= 0:
         print("Freddy gonna touch you cuz you has no battery")
 cameraState=False
@@ -334,18 +338,73 @@ while running:
     if pressed[pygame.K_LEFT]:
         if curTime - lastPressedWDoor > cooldown:
             westDoorState=closeWest()
+=======
+
+def settingup():
+    global screen, freddy, chica, bonnie, foxy, fredAI, chicaAI, bonnAI, foxyAI, animList, eastDoorState, westDoorState, gameGo, running, cameraState, batteryStacks, eastLightState, westLightState, jumpscare, _battery,clock
+    cameraState=False
+    batteryStacks=6
+    eastLightState=False
+    westLightState=False
+    jumpscare=False
+    _battery=100
+    global running
+    running = True
+    clock = pygame.time.Clock()
+
+    pygame.display.set_caption("My Pygame Window")
+    freddy = Anim("Freddy", 20, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
+    chica = Anim("Chica", 20, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
+    bonnie = Anim("Bonnie", 20, "ShowStage", ["ShowStage", "Dining", "Backstage", "SupplyCloset", "WestHall","WestHallCorner"])
+    foxy = Anim("Foxy", 20, "PirateCove", ["PiratesCove", "Pirate1", "Pirate2","Pirate3","Running"])
+    fredAI  = threading.Thread(target=freddy.animatronicMove, args=(freddy.getDiff(),), daemon=True)
+    chicaAI = threading.Thread(target=chica.animatronicMove, args=(chica.getDiff(),), daemon=True)
+    bonnAI  = threading.Thread(target=bonnie.animatronicMove, args=(bonnie.getDiff(),), daemon=True)
+    foxyAI  = threading.Thread(target=foxy.animatronicMove, args=(foxy.getDiff(),), daemon=True)
+    animList=[fredAI, chicaAI, bonnAI, foxyAI]
+    eastDoorState = False
+    westDoorState = False
+    gameGo = True
+    running = True
+    fredAI.start()
+    time.sleep(1)
+    chicaAI.start()
+    time.sleep(1)
+    bonnAI.start()
+    time.sleep(1)
+    foxyAI.start()
+    time.sleep(1)
+    while running:
+        # Event handling
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: # User clicked the close button
+                running = False
+        isKill()
+        # Game logic (e.g., update object positions)
+        pressed=pygame.key.get_pressed()
+        if pressed[pygame.K_LEFT]:
+            westDoorState=closeWest()
+            time.sleep(0.3)
+>>>>>>> 806af07 (YIPPEEE)
             if westDoorState==True:
                 print("West door Closed")
             else:
                 print("West Door Opened")
+<<<<<<< HEAD
             lastPressedWDoor=curTime
     if pressed[pygame.K_RIGHT]:
         if curTime - lastPressedEDoor > cooldown:
             eastDoorState=closeEast()
+=======
+        elif pressed[pygame.K_RIGHT]:
+            eastDoorState=closeEast()
+            time.sleep(0.3)
+>>>>>>> 806af07 (YIPPEEE)
             if eastDoorState==True:
                 print("East door Closed")
             else:
                 print("East Door Opened")
+<<<<<<< HEAD
             lastPressedEDoor=curTime
     if pressed[pygame.K_a]:
         if curTime - lastPressedWLight > cooldown:
@@ -371,11 +430,13 @@ while running:
             else:
                 print("Camera Closed")
             lastPressedCam=curTime
+=======
+>>>>>>> 806af07 (YIPPEEE)
     # Drawing
     screen.fill((0, 0, 0)) # Fill the screen with black (RGB)
     # Update the display
     pygame.display.flip() # or pygame.display.update()
-
+settingup()
 #Use of AI for pygame starter, fixing threads args and stopping all threads
 
 pygame.quit()
