@@ -228,6 +228,7 @@ def battery():
     global westDoorState, eastDoorState, cameraState, eastLightState, westLightState, batteryStacks
     batteryList=[westDoorState,eastDoorState,cameraState,eastLightState,westLightState]
     batteryCounter=0
+    batteryStacks=6
     for _battery in batteryList:
         if _battery:
             batteryCounter+=1
@@ -283,8 +284,9 @@ def isKill():
         else:
             print("fox from smash bros jumpscare")
         sys.exit()
-
-
+    elif _battery <= 0:
+        print("feddy jumpscare")
+        sys.exit()
 def settingup():
     global screen, freddy, chica, bonnie, foxy, fredAI, chicaAI, bonnAI, foxyAI, animList, eastDoorState, westDoorState, gameGo, running, cameraState, batteryStacks, eastLightState, westLightState, jumpscare, _battery,clock, cooldown,lastPressedWLight,lastPressedELight,lastPressedCam,lastPressedEDoor, curTime, lastPressedWDoor
     cameraState=False
@@ -311,7 +313,7 @@ def settingup():
     chicaAI = threading.Thread(target=chica.animatronicMove, args=(chica.getDiff(),), daemon=True)
     bonnAI  = threading.Thread(target=bonnie.animatronicMove, args=(bonnie.getDiff(),), daemon=True)
     foxyAI  = threading.Thread(target=foxy.animatronicMove, args=(foxy.getDiff(),), daemon=True)
-    batteryThread = threading.Thread(target=batteryDrain(), daemon=True)
+    batteryThread = threading.Thread(target=batteryDrain, daemon=True)
     animList=[fredAI, chicaAI, bonnAI, foxyAI]
     eastDoorState = False
     westDoorState = False
@@ -343,7 +345,7 @@ def settingup():
                 print("West door Closed")
             else:
                 print("West Door Opened")
-        elif pressed[pygame.K_RIGHT]:
+        if pressed[pygame.K_RIGHT]:
             eastDoorState=closeEast()
             time.sleep(0.3)
             if eastDoorState==True:
@@ -351,30 +353,30 @@ def settingup():
             else:
                 print("East Door Opened")
             lastPressedEDoor=curTime
-    if pressed[pygame.K_a]:
-        if curTime - lastPressedWLight > cooldown:
-            westLight()
-            if westLightState:
-                print("West light turned on")
-            else:
-                print("West light turned off")
-            lastPressedWLight=curTime
-    if pressed[pygame.K_d]:
-        if curTime - lastPressedELight > cooldown:
-            eastLight()
-            if eastLightState:
-                print("east light turned on")
-            else:
-                print("east light turned off")
-            lastPressedELight=curTime
-    if pressed[pygame.K_s]:
-        if curTime - lastPressedCam > cooldown:
-            camera()
-            if cameraState:
-                print("Camera opened")
-            else:
-                print("Camera Closed")
-            lastPressedCam=curTime
+        if pressed[pygame.K_a]:
+            if curTime - lastPressedWLight > cooldown:
+                westLight()
+                if westLightState:
+                    print("West light turned on")
+                else:
+                    print("West light turned off")
+                lastPressedWLight=curTime
+        if pressed[pygame.K_d]:
+            if curTime - lastPressedELight > cooldown:
+                eastLight()
+                if eastLightState:
+                    print("east light turned on")
+                else:
+                    print("east light turned off")
+                lastPressedELight=curTime
+        if pressed[pygame.K_s]:
+            if curTime - lastPressedCam > cooldown:
+                camera()
+                if cameraState:
+                    print("Camera opened")
+                else:
+                    print("Camera Closed")
+                lastPressedCam=curTime
 
     # Drawing
     screen.fill((0, 0, 0)) # Fill the screen with black (RGB)
