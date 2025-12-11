@@ -206,7 +206,20 @@ class Anim: #Masons class and funcs
                             jumpscare=False
                             self._curRoom=jumpFunc(jumpscare, self._animatronic)                       
                         else:
-                            jumpscare=True                   
+                            jumpscare=True     
+def timeLeft():
+    global _6am,timeCounter
+    timeCounter=0
+    _6am=False
+    while timeCounter < 6:
+        if timeCounter==0:
+            print(f"It is {12}am")
+        else:
+            print(f"It is {timeCounter}am")
+        time.sleep(75)
+        timeCounter+=1
+    if timeCounter==6:
+        _6am=True
 def camera():
     global cameraState
     cameraState = not cameraState
@@ -222,7 +235,7 @@ def batteryDrain():
     while _battery>0:
         time.sleep(batteryStacks)
         _battery-=1
-    print(f"{_battery}%")
+        print(f"{_battery}%")
 def battery(): 
     """checks how many things are turned on and using battery"""
     global westDoorState, eastDoorState, cameraState, eastLightState, westLightState, batteryStacks
@@ -237,12 +250,16 @@ def jumpFunc(jumpscare,name):
     """Checks if you have been attacked by an animatronic"""
     if jumpscare==False:
         if name == "Freddy":
+            print("Freddy has left")
             return "ShowStage"
         elif name == "Chica":
+            print("Chica has left")
             return "ShowStage"
         elif name == "Bonnie":
+            print("Bonnie has left")
             return "ShowStage"
         else:
+            print("Foxy has left")
             return "PirateCove"
 def closeWest():
     """closes and opens left door"""
@@ -273,7 +290,7 @@ def checkDoorEast():
     else:
         return True
 def isKill():
-    global jumpscare, _battery
+    global jumpscare, _battery, _6am
     if jumpscare==True:
         if freddy.getRoom().lower()=="office":
             print("feddy jumpscare")
@@ -286,6 +303,9 @@ def isKill():
         sys.exit()
     elif _battery <= 0:
         print("feddy jumpscare")
+        sys.exit()
+    elif _6am:
+        print("You win brochacho")
         sys.exit()
 def settingup():
     global screen, freddy, chica, bonnie, foxy, fredAI, chicaAI, bonnAI, foxyAI, animList, eastDoorState, westDoorState, gameGo, running, cameraState, batteryStacks, eastLightState, westLightState, jumpscare, _battery,clock, cooldown,lastPressedWLight,lastPressedELight,lastPressedCam,lastPressedEDoor, curTime, lastPressedWDoor
@@ -314,20 +334,22 @@ def settingup():
     bonnAI  = threading.Thread(target=bonnie.animatronicMove, args=(bonnie.getDiff(),), daemon=True)
     foxyAI  = threading.Thread(target=foxy.animatronicMove, args=(foxy.getDiff(),), daemon=True)
     batteryThread = threading.Thread(target=batteryDrain, daemon=True)
+    timeThread = threading.Thread(target=timeLeft, daemon=True)
     animList=[fredAI, chicaAI, bonnAI, foxyAI]
     eastDoorState = False
     westDoorState = False
     gameGo = True
     running = True
     batteryThread.start()
+    timeThread.start()
     fredAI.start()
-    time.sleep(1)
+    time.sleep(0.5)
     chicaAI.start()
-    time.sleep(1)
+    time.sleep(0.5)
     bonnAI.start()
-    time.sleep(1)
+    time.sleep(0.5)
     foxyAI.start()
-    time.sleep(1)
+    time.sleep(0.5)
     while running:
         # Event handling
         for event in pygame.event.get():
