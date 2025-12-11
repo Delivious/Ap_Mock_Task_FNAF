@@ -311,11 +311,13 @@ def settingup():
     chicaAI = threading.Thread(target=chica.animatronicMove, args=(chica.getDiff(),), daemon=True)
     bonnAI  = threading.Thread(target=bonnie.animatronicMove, args=(bonnie.getDiff(),), daemon=True)
     foxyAI  = threading.Thread(target=foxy.animatronicMove, args=(foxy.getDiff(),), daemon=True)
+    batteryThread = threading.Thread(target=batteryDrain(), daemon=True)
     animList=[fredAI, chicaAI, bonnAI, foxyAI]
     eastDoorState = False
     westDoorState = False
     gameGo = True
     running = True
+    batteryThread.start()
     fredAI.start()
     time.sleep(1)
     chicaAI.start()
@@ -331,6 +333,7 @@ def settingup():
                 running = False
         curTime=pygame.time.get_ticks()
         isKill()
+        battery()
         # Game logic (e.g., update object positions)
         pressed=pygame.key.get_pressed()
         if pressed[pygame.K_LEFT]:
