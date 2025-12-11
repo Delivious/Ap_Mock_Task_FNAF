@@ -204,11 +204,22 @@ class Anim: #Masons class and funcs
                             self._curRoom=jumpFunc(jumpscare, self._animatronic)                       
                         else:
                             jumpscare=True                   
+def camera():
+    global cameraState
+    cameraState = not cameraState
+def westLight():
+    global westLightState
+    westLightState = not westLightState
+def eastLight():
+    global eastLightState
+    eastLightState = not eastLightState
 def batteryDrain():
     """drains the battery based on how many things are turned on"""
     global batteryStacks, _battery
-    time.sleep(batteryStacks)
-    _battery-=1
+    while _battery>0:
+        time.sleep(batteryStacks)
+        _battery-=1
+    print(f"{_battery}%")
 def battery(): 
     """checks how many things are turned on and using battery"""
     global westDoorState, eastDoorState, cameraState, eastLightState, westLightState, batteryStacks
@@ -258,7 +269,7 @@ def checkDoorEast():
     else:
         return True
 def isKill():
-    global jumpscare
+    global jumpscare, _battery
     if jumpscare==True:
         if freddy.getRoom().lower()=="office":
             print("feddy jumpscare")
@@ -269,6 +280,8 @@ def isKill():
         else:
             print("fox from smash bros jumpscare")
         sys.exit()
+    elif _battery <= 0:
+        print("Freddy gonna touch you cuz you has no battery")
 cameraState=False
 batteryStacks=6
 eastLightState=False
@@ -287,11 +300,19 @@ fredAI  = threading.Thread(target=freddy.animatronicMove, args=(freddy.getDiff()
 chicaAI = threading.Thread(target=chica.animatronicMove, args=(chica.getDiff(),), daemon=True)
 bonnAI  = threading.Thread(target=bonnie.animatronicMove, args=(bonnie.getDiff(),), daemon=True)
 foxyAI  = threading.Thread(target=foxy.animatronicMove, args=(foxy.getDiff(),), daemon=True)
+batteryThread = threading.Thread(target=batteryDrain(), daemon=True)
 animList=[fredAI, chicaAI, bonnAI, foxyAI]
 eastDoorState = False
 westDoorState = False
 gameGo = True
 running = True
+cooldown=333
+lastPressedEDoor=-cooldown
+lastPressedWDoor=-cooldown
+lastPressedELight=-cooldown
+lastPressedWLight=-cooldown
+lastPressedCam=-cooldown
+batteryThread.start()
 fredAI.start()
 time.sleep(1)
 chicaAI.start()
@@ -305,23 +326,51 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: # User clicked the close button
             running = False
+    curTime=pygame.time.get_ticks()
     isKill()
+    battery()
     # Game logic (e.g., update object positions)
     pressed=pygame.key.get_pressed()
     if pressed[pygame.K_LEFT]:
-        westDoorState=closeWest()
-        time.sleep(0.3)
-        if westDoorState==True:
-            print("West door Closed")
-        else:
-            print("West Door Opened")
-    elif pressed[pygame.K_RIGHT]:
-        eastDoorState=closeEast()
-        time.sleep(0.3)
-        if eastDoorState==True:
-            print("East door Closed")
-        else:
-            print("East Door Opened")
+        if curTime - lastPressedWDoor > cooldown:
+            westDoorState=closeWest()
+            if westDoorState==True:
+                print("West door Closed")
+            else:
+                print("West Door Opened")
+            lastPressedWDoor=curTime
+    if pressed[pygame.K_RIGHT]:
+        if curTime - lastPressedEDoor > cooldown:
+            eastDoorState=closeEast()
+            if eastDoorState==True:
+                print("East door Closed")
+            else:
+                print("East Door Opened")
+            lastPressedEDoor=curTime
+    if pressed[pygame.K_a]:
+        if curTime - lastPressedWLight > cooldown:
+            westLight()
+            if westLightState:
+                print("West light turned on")
+            else:
+                print("West light turned off")
+            lastPressedWLight=curTime
+    if pressed[pygame.K_d]:
+        if curTime - lastPressedELight > cooldown:
+            eastLight()
+            if eastLightState:
+                print("east light turned on")
+            else:
+                print("east light turned off")
+            lastPressedELight=curTime
+    if pressed[pygame.K_s]:
+        if curTime - lastPressedCam > cooldown:
+            camera()
+            if cameraState:
+                print("Camera opened")
+            else:
+                print("Camera Closed")
+            lastPressedCam=curTime
     # Drawing
     screen.fill((0, 0, 0)) # Fill the screen with black (RGB)
     # Update the display
