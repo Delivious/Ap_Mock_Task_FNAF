@@ -87,7 +87,7 @@ def difficuties():
     pygame.draw.rect(screen2, GREY, foxyAdd)
     pygame.draw.rect(screen2, GREY, foxyminus)
     pygame.draw.lines(screen2, WHITE, False, [[1767.5,610],[1797,640],[1767.5,610],[1797,580]], 5)
-    pygame.draw.lines(screen2, WHITE, False, [[2082.5,610],[2038,640],[2082.5,610],[2038,580]], 5)
+    pygame.draw.lines(screen2, WHITE, False, [[2067.5,610],[2037,640],[2067.5,610],[2037,580]], 5)
 
     # CLEAR number area (smaller, fits between the two grey rectangles)
     pygame.draw.rect(screen2, BLACK, (1835, 560, 180, 100))  
