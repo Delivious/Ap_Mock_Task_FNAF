@@ -33,6 +33,10 @@ officerightdoor= pygame.image.load("officeimages/officerightdoor.png")
 officeleftdoor= pygame.image.load("officeimages/officeleftdoor.jpg")
 rightdoorrightlight= pygame.image.load("officeimages/rightdoorrightlight.png")
 rightdoorleftlight= pygame.image.load("officeimages/rightdoorleftlight.png")
+bonniebothdoors= pygame.image.load("officeimages/bonniebothdoors.png")
+bonniebothlightsrightdoor= pygame.image.load("officeimages/bonniebothlightsrightdoor.png")
+bonnieleftdoor= pygame.image.load("officeimages/bonnieleftdoor.png")
+bonnierightdoor= pygame.image.load("officeimages/bonnierightdoor.png")
 pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 # https://www.youtube.com/watch?v=MwbXp6_C5i8 is the link to the video for threading and running multiple functions concurrently
@@ -324,7 +328,7 @@ def blitOffice():
             
 
         elif eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bonnie both Lights Right Door")
+            screen.blit(bonniebothlightsrightdoor, (0, 0))
             lastPrint=curTime
             
 
@@ -359,17 +363,17 @@ def blitOffice():
             
         
         elif eastLightState==False and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bonnie left light left door")
+            screen.blit(bonnieleftdoor, (0, 0))
             lastPrint=curTime
             
 
         elif eastLightState==False and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bonnie left light right door")
+            screen.blit(bonnierightdoor, (0, 0))
             lastPrint=curTime
             
         
         elif eastLightState==False and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bonnie left light both doors")
+            screen.blit(bonniebothdoors, (0, 0))
             lastPrint=curTime
             
         
