@@ -111,32 +111,29 @@ def difficuties():
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:  # Left mouse button click
             mouse_pos = event.pos
             if fredAdd.collidepoint(mouse_pos):
-                if freddif < 20:
-                    freddif += 1
-            elif fredminus.collidepoint(mouse_pos):
                 if freddif > 0:
                     freddif -= 1
-
+            elif fredminus.collidepoint(mouse_pos): 
+                if freddif < 20:
+                    freddif += 1
             if chicaAdd.collidepoint(mouse_pos):
-                if chicadif < 20:
-                    chicadif += 1
-            elif chicaminus.collidepoint(mouse_pos):
                 if chicadif > 0:
                     chicadif -= 1
-
+            elif chicaminus.collidepoint(mouse_pos):
+                if chicadif < 20:
+                    chicadif += 1
             if bonnieAdd.collidepoint(mouse_pos):
-                if bonniedif < 20:
-                    bonniedif += 1
-            elif bonnieminus.collidepoint(mouse_pos):
                 if bonniedif > 0:
                     bonniedif -= 1
-
+            elif bonnieminus.collidepoint(mouse_pos):
+                if bonniedif < 20:
+                    bonniedif += 1
             if foxyAdd.collidepoint(mouse_pos):
-                if foxydif < 20:
-                    foxydif += 1
-            elif foxyminus.collidepoint(mouse_pos):
                 if foxydif > 0:
                     foxydif -= 1
+            elif foxyminus.collidepoint(mouse_pos):
+                if foxydif < 20:
+                    foxydif += 1
             if ready.collidepoint(mouse_pos):
                 print(f"Starting night with difficulties - Freddy: {freddif}, Chica: {chicadif}, Bonnie: {bonniedif}, Foxy: {foxydif}")
                 running = False  # exit menu
