@@ -255,7 +255,7 @@ def cameraPos(position):
         position=position
 def blitOffice(lastPrint):
     global eastLightState, westLightState, westDoorState, eastDoorState, curTime, _battery
-    printCooldown=333
+    printCooldown=100
     if curTime - lastPrint > printCooldown:
         if chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bothAnimAll")
@@ -307,8 +307,33 @@ def blitOffice(lastPrint):
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState and eastDoorState==False:
             print("will blit chica right light left door")
-            
-            
+
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState and eastDoorState:
+            print("will blit chica right lignt both door")
+        
+        elif eastLightState==False and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bonnie left light left door")
+
+        elif eastLightState==False and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bonnie left light right door")
+        
+        elif eastLightState==False and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bonnie left light both doors")
+        
+        elif eastLightState and westLightState and westDoorState and eastDoorState:
+            print("will blit both lights both doors")
+        
+        elif eastLightState and westLightState and westDoorState and eastDoorState==False:
+            print("will blit both lights left door")
+        
+        elif eastLightState and westLightState and westDoorState and eastDoorState:
+            print("will blit both lights")
+
+        elif eastLightState and westLightState==False and westDoorState==False and eastDoorState==False:
+            print("will blit right light")
+        
+        elif eastLightState==False and westLightState and westDoorState==False and eastDoorState==False:
+            print("will blit left light")
 
 def timeLeft():
     global _6am,timeCounter
