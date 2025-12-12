@@ -3,10 +3,10 @@ import time
 import threading
 import random
 import sys
-
+from Custom_Night_Menu import freddif, foxydif, chicadif, bonniedif
 fred = pygame.image.load("freddy1.png")
-screen_width = 2500
-screen_height = 1500
+screen_width = 1000
+screen_height = 1000
 pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 # https://www.youtube.com/watch?v=MwbXp6_C5i8 is the link to the video for threading and running multiple functions concurrently
@@ -132,7 +132,7 @@ class Anim: #Masons class and funcs
                             jumpscare=True
             elif self._animatronic == "Bonnie":
                 if self._curRoom.lower()=="showstage":
-                    toMove=["Dining", "Backstage"]
+                    toMove=["Dining", "BackStage"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
                     print(f"{self._animatronic} is in {self._curRoom}")
@@ -152,12 +152,12 @@ class Anim: #Masons class and funcs
                     self._curRoom=whereMove
                     print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="westhallcorner":
-                    toMove=["Office", "EastHallCorner"]
+                    toMove=["Office", "WestHallCorner"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
                     print(f"{self._animatronic} is in {self._curRoom}")
                 elif self._curRoom.lower()=="supplycloset":
-                    toMove=["EastHallCorner","EastHall","SupplyCloset"]
+                    toMove=["WestHallCorner","EastHall","SupplyCloset"]
                     whereMove=random.choice(toMove)
                     self._curRoom=whereMove
                     print(f"{self._animatronic} is in {self._curRoom}")
@@ -206,7 +206,68 @@ class Anim: #Masons class and funcs
                             jumpscare=False
                             self._curRoom=jumpFunc(jumpscare, self._animatronic)                       
                         else:
-                            jumpscare=True     
+                            jumpscare=True
+def cameraPos(position):
+    if position == 1:
+        print(position)
+    elif position == 2:
+        print(position)
+    elif position == 3:
+        print(position)
+    elif position == 4:
+        print(position)
+    elif position == 5:
+        print(position)
+    elif position == 6:
+        print(position)
+    elif position == 7:
+        print(position)
+    elif position == 8:
+        print(position)
+    elif position == 9:
+        print(position)
+    elif position == 10:
+        print(position)
+    else:
+        position=position
+def blitOffice(lastPrint):
+    global eastLightState, westLightState, westDoorState, eastDoorState, curTime, _battery
+    printCooldown=333
+    if curTime - lastPrint > printCooldown:
+        if chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bothAnimAll")
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() != "westhallcorner":
+            print("will blit chicaLightBothDoor")
+        elif chica.getRoom().lower() != "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bonnieLightBothDoor")
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bothAnimLeftDoor")
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bothAnim")
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() != "westhallcorner":
+            print("will blit chicaLightLeftDoor")
+        elif chica.getRoom().lower() != "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bonnieLightLeftDoor")
+        elif chica.getRoom().lower() != "easthallcorner" and eastLightState==False and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() != "westhallcorner":
+            print("will blit bothDoorLeftLight")
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bothAnimLightRightDoor")
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() != "westhallcorner":
+            print("will blit chicaLightRightDoor")
+        elif chica.getRoom().lower() != "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bonnieLightRightDoor")
+        elif _battery < 0:
+            print("will blit blackout")
+        elif chica.getRoom().lower() != "easthallcorner" and eastLightState==False and westLightState and westDoorState==False and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit officeBonnie")
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState==False and eastDoorState==False and bonnie.getRoom().lower() != "westhallcorner":
+            print("will blit officeChica")
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bothAnimRightDoor")
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit ")
+
+
 def timeLeft():
     global _6am,timeCounter
     timeCounter=0
@@ -220,9 +281,12 @@ def timeLeft():
         timeCounter+=1
     if timeCounter==6:
         _6am=True
-def camera():
+def camera(switch):
     global cameraState
-    cameraState = not cameraState
+    if switch == 0:
+        cameraState = not cameraState
+    elif switch != 0 and cameraState:
+        cameraPos(switch)
 def westLight():
     global westLightState
     westLightState = not westLightState
@@ -319,16 +383,19 @@ def settingup():
     running = True
     clock = pygame.time.Clock()
     cooldown=333
+    cooldownCam=200
     lastPressedWLight=-cooldown
     lastPressedELight=-cooldown
     lastPressedCam=-cooldown
     lastPressedEDoor=-cooldown
     lastPressedWDoor=-cooldown
+    printCooldown=500
+    lastPrint=-printCooldown
     pygame.display.set_caption("My Pygame Window")
-    freddy = Anim("Freddy", 20, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
-    chica = Anim("Chica", 20, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
-    bonnie = Anim("Bonnie", 20, "ShowStage", ["ShowStage", "Dining", "Backstage", "SupplyCloset", "WestHall","WestHallCorner"])
-    foxy = Anim("Foxy", 20, "PirateCove", ["PiratesCove", "Pirate1", "Pirate2","Pirate3","Running"])
+    freddy = Anim("Freddy", freddif, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
+    chica = Anim("Chica", chicadif, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
+    bonnie = Anim("Bonnie", bonniedif, "ShowStage", ["ShowStage", "Dining", "Backstage", "SupplyCloset", "WestHall","WestHallCorner"])
+    foxy = Anim("Foxy", foxydif, "PirateCove", ["PiratesCove", "Pirate1", "Pirate2","Pirate3","Running"])
     fredAI  = threading.Thread(target=freddy.animatronicMove, args=(freddy.getDiff(),), daemon=True)
     chicaAI = threading.Thread(target=chica.animatronicMove, args=(chica.getDiff(),), daemon=True)
     bonnAI  = threading.Thread(target=bonnie.animatronicMove, args=(bonnie.getDiff(),), daemon=True)
@@ -358,6 +425,7 @@ def settingup():
         curTime=pygame.time.get_ticks()
         isKill()
         battery()
+        blitOffice(lastPrint)
         # Game logic (e.g., update object positions)
         pressed=pygame.key.get_pressed()
         if pressed[pygame.K_LEFT]:
@@ -393,12 +461,44 @@ def settingup():
                 lastPressedELight=curTime
         if pressed[pygame.K_s]:
             if curTime - lastPressedCam > cooldown:
-                camera()
+                camera(0)
                 if cameraState:
                     print("Camera opened")
                 else:
                     print("Camera Closed")
                 lastPressedCam=curTime
+        if pressed[pygame.K_1]:
+            if curTime - lastPressedCam > cooldownCam:
+                camera(1)
+        elif pressed[pygame.K_2]:
+            if curTime - lastPressedCam > cooldownCam:
+                camera(2)
+        elif pressed[pygame.K_3]:
+            if curTime - lastPressedCam > cooldownCam:
+                camera(3)
+        elif pressed[pygame.K_4]:
+            if curTime - lastPressedCam > cooldownCam:
+                camera(4)
+        elif pressed[pygame.K_5]:
+            if curTime - lastPressedCam > cooldownCam:
+                camera(5)
+        elif pressed[pygame.K_6]:
+            if curTime - lastPressedCam > cooldownCam:
+                camera(6)
+        elif pressed[pygame.K_7]:
+            if curTime - lastPressedCam > cooldownCam:
+                camera(7)
+        elif pressed[pygame.K_8]:
+            if curTime - lastPressedCam > cooldownCam:
+                camera(8)
+        elif pressed[pygame.K_9]:
+            if curTime - lastPressedCam > cooldownCam:
+                camera(9)
+        elif pressed[pygame.K_0]:
+            if curTime - lastPressedCam > cooldownCam:
+                camera(10)
+        
+
 
     # Drawing
     screen.fill((0, 0, 0)) # Fill the screen with black (RGB)
