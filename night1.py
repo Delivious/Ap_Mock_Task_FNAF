@@ -5,8 +5,8 @@ import random
 import sys
 from Custom_Night_Menu import freddif, foxydif, chicadif, bonniedif
 fred = pygame.image.load("freddy1.png")
-screen_width = 1000
-screen_height = 1000
+screen_width = 1332
+screen_height = 594
 allnoanim= pygame.image.load("officeimages/all.png")
 bothdoorchica= pygame.image.load("officeimages/bothdoorchica.png")
 bothdoorleftlight= pygame.image.load("officeimages/bothdoorleftlight.png")
@@ -261,7 +261,7 @@ def blitOffice(lastPrint):
             print("will blit bothAnimAll")
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState:
-            print("will blit chica with both lights and doors")
+            screen.blit(chicalightbothdoor, (0, 0))
 
         elif eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bonnie both lights and doors")
@@ -273,40 +273,40 @@ def blitOffice(lastPrint):
             print("will blit both bonnie and chica")
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState==False:
-            print("will blit chica both Lights Left Door")
+            screen.blit(officechica, (0, 0))
 
         elif eastLightState and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bonnie both Lights Left Door")
 
         elif eastLightState==False and westLightState and westDoorState and eastDoorState:
-            print("will blit both Doors Left Light")
+            screen.blit(chicalightleftdoor, (0, 0))
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit both bonnie and chica Lights Right Door")
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState:
-            print("will blit chica both Lights Right Door")
+            screen.blit(chicalightrightdoor, (0, 0))
 
         elif eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bonnie both Lights Right Door")
 
         elif _battery < 0:
-            print("will blit blackout")
+            screen.blit(blackout, (0, 0))
 
         elif eastLightState==False and westLightState and westDoorState==False and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit office Bonnie")
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState==False and eastDoorState==False:
-            print("will blit office Chica")
+            screen.blit(officechica, (0, 0))
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit both bonnie and chica Right Door")
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState==False and eastDoorState:
-            print("will blit chica right Light Right Door")
+            screen.blit(chicarightdoor, (0, 0))
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState and eastDoorState==False:
-            print("will blit chica right light left door")
+            screen.blit(chicaleftdoor, (0, 0))
             
             
 
@@ -314,6 +314,7 @@ def timeLeft():
     global _6am,timeCounter
     timeCounter=0
     _6am=False
+    
     while timeCounter < 6:
         if timeCounter==0:
             print(f"It is {12}am")
@@ -433,6 +434,7 @@ def settingup():
     lastPressedWDoor=-cooldown
     printCooldown=500
     lastPrint=-printCooldown
+    
     pygame.display.set_caption("My Pygame Window")
     freddy = Anim("Freddy", freddif, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
     chica = Anim("Chica", chicadif, "ShowStage", ["ShowStage", "Dining", "Restrooms", "Kitchen", "EastHall","EastHallCorner"])
@@ -449,6 +451,8 @@ def settingup():
     westDoorState = False
     gameGo = True
     running = True
+    
+    pygame.display.flip()
     batteryThread.start()
     timeThread.start()
     fredAI.start()
@@ -465,6 +469,8 @@ def settingup():
             if event.type == pygame.QUIT: # User clicked the close button
                 running = False
         curTime=pygame.time.get_ticks()
+        
+        
         isKill()
         battery()
         blitOffice(lastPrint)
@@ -543,7 +549,7 @@ def settingup():
 
 
     # Drawing
-    screen.fill((0, 0, 0)) # Fill the screen with black (RGB)
+    
     # Update the display
     pygame.display.flip() # or pygame.display.update()
 settingup()
