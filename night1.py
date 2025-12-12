@@ -12,7 +12,8 @@ bothdoorchica= pygame.image.load("officeimages/bothdoorchica.png")
 bothdoorleftlight= pygame.image.load("officeimages/bothdoorleftlight.png")
 bothdoorrightlight= pygame.image.load("officeimages/bothdoorrightlight.png")
 bothdoors=  pygame.image.load("officeimages/bothdoors.png")
-bothlightroightdoor= pygame.image.load("officeimages/bothlightsrightdoor.png")
+bothlightleftdoor= pygame.image.load("officeimages/bothlightsleftdoor.png")
+bothlightrightdoor= pygame.image.load("officeimages/bothlightsrightdoor.png")
 bothlights= pygame.image.load("officeimages/bothlights.png")
 chicabothlight= pygame.image.load("officeimages/chicabothlight.png")
 chicaleftdoor= pygame.image.load("officeimages/chicaleftdoor.png")
@@ -309,7 +310,7 @@ def blitOffice(lastPrint):
             screen.blit(chicaleftdoor, (0, 0))
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState and eastDoorState:
-            print("will blit chica right lignt both door")
+            screen.blit(bothdoorchica, (0, 0))
         
         elif eastLightState==False and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bonnie left light left door")
@@ -321,19 +322,19 @@ def blitOffice(lastPrint):
             print("will blit bonnie left light both doors")
         
         elif eastLightState and westLightState and westDoorState and eastDoorState:
-            print("will blit both lights both doors")
+            screen.blit(allnoanim, (0, 0))
         
         elif eastLightState and westLightState and westDoorState and eastDoorState==False:
-            print("will blit both lights left door")
+            screen.blit(bothlightleftdoor, (0, 0))
         
         elif eastLightState and westLightState and westDoorState and eastDoorState:
-            print("will blit both lights")
+            screen.blit(bothlights, (0, 0))
 
         elif eastLightState and westLightState==False and westDoorState==False and eastDoorState==False:
-            print("will blit right light")
+            screen.blit(officerightlight, (0, 0))
         
         elif eastLightState==False and westLightState and westDoorState==False and eastDoorState==False:
-            print("will blit left light")
+            screen.blit(officeleftlight, (0, 0))
             
             
 
@@ -478,7 +479,7 @@ def settingup():
     westDoorState = False
     gameGo = True
     running = True
-    
+    screen.blit(chicalightbothdoor, (0, 0))
     pygame.display.flip()
     batteryThread.start()
     timeThread.start()
