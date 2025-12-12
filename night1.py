@@ -58,7 +58,7 @@ class Anim: #Masons class and funcs
     def getRooms(self):
         return self._rooms
     def animatronicMove(self, difficulty, sixam=False):
-        global gameGo
+        global gameGo, eastDoorState, westDoorState
         nums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
         while gameGo == True:
             time.sleep(5)
@@ -66,6 +66,19 @@ class Anim: #Masons class and funcs
             if isWalk <= difficulty:
                 move=True
                 self.moveArea(move)
+            elif self._curRoom.lower()=="office":
+                if self._animatronic == "freddy" and eastDoorState:
+                    jumpscare=False
+                    jumpFunc(jumpscare, self._animatronic)
+                elif self._animatronic == "chica" and eastDoorState:
+                    jumpscare=False
+                    jumpFunc(jumpscare, self._animatronic)
+                elif self._animatronic == "bonnie" and westDoorState:
+                    jumpscare=False
+                    jumpFunc(jumpscare, self._animatronic)
+                elif self._animatronic == "foxy" and westDoorState:
+                    jumpscare=False
+                    jumpFunc(jumpscare, self._animatronic)
             else:
                 move=False
                 self.moveArea(move)
@@ -553,12 +566,12 @@ def settingup():
     clock = pygame.time.Clock()
     cooldown=333
     cooldownCam=200
+    printCooldown=100
     lastPressedWLight=-cooldown
     lastPressedELight=-cooldown
     lastPressedCam=-cooldown
     lastPressedEDoor=-cooldown
     lastPressedWDoor=-cooldown
-    printCooldown=500
     lastPrint=-printCooldown
     
     pygame.display.set_caption("My Pygame Window")
