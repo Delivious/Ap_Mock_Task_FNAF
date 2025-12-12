@@ -377,19 +377,24 @@ def blitOffice():
             screen.blit(allnoanim, (0, 0))
             lastPrint=curTime
             
-        
+
+        elif eastLightState and westLightState and westDoorState==False and eastDoorState:
+            screen.blit(bothlightrightdoor, (0, 0))
+            lastPrint=curTime
+
+
         elif eastLightState and westLightState and westDoorState and eastDoorState==False:
             screen.blit(bothlightleftdoor, (0, 0))
             lastPrint=curTime
             
         
         elif eastLightState and westLightState==False and westDoorState and eastDoorState:
-            screen.blit(bothdoorleftlight, (0, 0))
+            screen.blit(bothdoorrightlight, (0, 0))
             lastPrint=curTime
             
 
         elif eastLightState==False and westLightState and westDoorState and eastDoorState:
-            screen.blit(bothdoorrightlight, (0, 0))
+            screen.blit(bothdoorleftlight, (0, 0))
             lastPrint=curTime
             
 
