@@ -12,7 +12,7 @@ bothdoorchica= pygame.image.load("officeimages/bothdoorchica.png")
 bothdoorleftlight= pygame.image.load("officeimages/bothdoorleftlight.png")
 bothdoorrightlight= pygame.image.load("officeimages/bothdoorrightlight.png")
 bothdoors=  pygame.image.load("officeimages/bothdoors.png")
-bothlightleftdoor= pygame.image.load("officeimages/bothlightsleftdoor.png")
+bothlightleftdoor= pygame.image.load("officeimages/bothlightleftdoor.png")
 bothlightrightdoor= pygame.image.load("officeimages/bothlightsrightdoor.png")
 bothlights= pygame.image.load("officeimages/bothlights.png")
 chicabothlight= pygame.image.load("officeimages/chicabothlight.png")
@@ -30,6 +30,7 @@ officeleftlight= pygame.image.load("officeimages/officeleftlight.png")
 officerightlight= pygame.image.load("officeimages/officerightlight.png")
 officenodoor= pygame.image.load("officeimages/officenodoor.png")
 officerightdoor= pygame.image.load("officeimages/officerightdoor.png")
+officeleftdoor= pygame.image.load("officeimages/officeleftdoor.jpg")
 
 pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
@@ -432,6 +433,9 @@ def blitOffice(lastPrint):
             print("will blit normal office")
             lastPrint=curTime
             return lastPrint
+        
+
+        pygame.display.flip()
 def timeLeft():
     global _6am,timeCounter
     timeCounter=0
@@ -573,7 +577,6 @@ def settingup():
     westDoorState = False
     gameGo = True
     running = True
-    screen.blit(chicalightbothdoor, (0, 0))
     pygame.display.flip()
     batteryThread.start()
     timeThread.start()
