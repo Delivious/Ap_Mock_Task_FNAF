@@ -31,7 +31,8 @@ officerightlight= pygame.image.load("officeimages/officerightlight.png")
 officenodoor= pygame.image.load("officeimages/officenodoor.png")
 officerightdoor= pygame.image.load("officeimages/officerightdoor.png")
 officeleftdoor= pygame.image.load("officeimages/officeleftdoor.jpg")
-
+rightdoorrightlight= pygame.image.load("officeimages/rightdoorrightlight.png")
+rightdoorleftlight= pygame.image.load("officeimages/rightdoorleftlight.png")
 pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 # https://www.youtube.com/watch?v=MwbXp6_C5i8 is the link to the video for threading and running multiple functions concurrently
@@ -370,7 +371,7 @@ def blitOffice(lastPrint):
             return lastPrint
         
         elif eastLightState and westLightState==False and westDoorState and eastDoorState:
-            print("will blit both doors right light")
+            screen.blit(bothdoorrightlight, (0, 0))
             lastPrint=curTime
             return lastPrint
 
@@ -380,22 +381,22 @@ def blitOffice(lastPrint):
             return lastPrint
 
         elif eastLightState and westLightState==False and eastDoorState and westDoorState==False:
-            print("will blit both right side")
+            screen.blit(rightdoorrightlight, (0, 0))
             lastPrint=curTime
             return lastPrint
 
         elif eastLightState==False and westLightState and eastDoorState==False and westDoorState:
-            print("both left side")
+            screen.blit(leftdoorleftlight, (0, 0))
             lastPrint=curTime
             return lastPrint
         
         elif eastLightState and westLightState==False and eastDoorState==False and westDoorState:
-            print("will blit right light left door")
+            screen.blit(leftdoorrightlight, (0, 0))
             lastPrint=curTime
             return lastPrint
         
         elif eastLightState==False and westLightState and eastDoorState and westDoorState==False:
-            print("left light right door")
+            screen.blit(rightdoorleftlight, (0, 0))
             lastPrint=curTime
             return lastPrint 
 
@@ -405,7 +406,7 @@ def blitOffice(lastPrint):
             return lastPrint
 
         elif eastLightState==False and westLightState==False and westDoorState and eastDoorState:
-            print("will blit both doors")
+            screen.blit(bothdoors, (0, 0))
             lastPrint=curTime
             return lastPrint
         
@@ -415,7 +416,7 @@ def blitOffice(lastPrint):
             return lastPrint
 
         elif eastLightState==False and westLightState==False and westDoorState and eastDoorState==False:
-            print("will blit left door")
+            screen.blit(officeleftdoor, (0, 0))
             lastPrint=curTime
             return lastPrint
         
@@ -425,12 +426,12 @@ def blitOffice(lastPrint):
             return lastPrint
         
         elif eastLightState==False and westLightState==False and westDoorState==False and eastDoorState:
-            print("will blit right door")
+            screen.blit(officerightdoor, (0, 0))
             lastPrint=curTime
             return lastPrint
 
         elif eastLightState==False and westLightState==False and westDoorState==False and eastDoorState==False:
-            print("will blit normal office")
+            screen.blit(officenodoor, (0, 0))
             lastPrint=curTime
             return lastPrint
         
