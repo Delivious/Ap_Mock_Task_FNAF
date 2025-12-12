@@ -236,37 +236,56 @@ def blitOffice(lastPrint):
     if curTime - lastPrint > printCooldown:
         if chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bothAnimAll")
-        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() != "westhallcorner":
-            print("will blit chicaLightBothDoor")
-        elif chica.getRoom().lower() != "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bonnieLightBothDoor")
+
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState:
+            print("will blit chica with both lights and doors")
+
+        elif eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bonnie both lights and doors")
+
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bothAnimLeftDoor")
+            print("will blit both bonnie and chica Left Door")
+
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bothAnim")
-        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() != "westhallcorner":
-            print("will blit chicaLightLeftDoor")
-        elif chica.getRoom().lower() != "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bonnieLightLeftDoor")
-        elif chica.getRoom().lower() != "easthallcorner" and eastLightState==False and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() != "westhallcorner":
-            print("will blit bothDoorLeftLight")
+            print("will blit both bonnie and chica")
+
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState==False:
+            print("will blit chica both Lights Left Door")
+
+        elif eastLightState and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bonnie both Lights Left Door")
+
+        elif eastLightState==False and westLightState and westDoorState and eastDoorState:
+            print("will blit both Doors Left Light")
+
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bothAnimLightRightDoor")
-        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() != "westhallcorner":
-            print("will blit chicaLightRightDoor")
-        elif chica.getRoom().lower() != "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bonnieLightRightDoor")
+            print("will blit both bonnie and chica Lights Right Door")
+
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState:
+            print("will blit chica both Lights Right Door")
+
+        elif eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bonnie both Lights Right Door")
+
         elif _battery < 0:
             print("will blit blackout")
-        elif chica.getRoom().lower() != "easthallcorner" and eastLightState==False and westLightState and westDoorState==False and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit officeBonnie")
-        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState==False and eastDoorState==False and bonnie.getRoom().lower() != "westhallcorner":
-            print("will blit officeChica")
-        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bothAnimRightDoor")
-        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit ")
 
+        elif eastLightState==False and westLightState and westDoorState==False and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit office Bonnie")
+
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState==False and eastDoorState==False:
+            print("will blit office Chica")
+
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit both bonnie and chica Right Door")
+
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState==False and eastDoorState:
+            print("will blit chica right Light Right Door")
+
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState and eastDoorState==False:
+            print("will blit chica right light left door")
+            
+            
 
 def timeLeft():
     global _6am,timeCounter
