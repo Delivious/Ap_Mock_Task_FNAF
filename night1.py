@@ -334,7 +334,7 @@ def blitOffice():
             
 
         elif eastLightState==False and westLightState and westDoorState==False and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit office Bonnie")
+            screen.blit(officebonnie, (0, 0))
             lastPrint=curTime
             
 
@@ -384,12 +384,12 @@ def blitOffice():
             
         
         elif eastLightState and westLightState==False and westDoorState and eastDoorState:
-            screen.blit(bothdoorrightlight, (0, 0))
+            screen.blit(bothdoorleftlight, (0, 0))
             lastPrint=curTime
             
 
         elif eastLightState==False and westLightState and westDoorState and eastDoorState:
-            screen.blit(chicalightleftdoor, (0, 0))
+            screen.blit(bothdoorrightlight, (0, 0))
             lastPrint=curTime
             
 
