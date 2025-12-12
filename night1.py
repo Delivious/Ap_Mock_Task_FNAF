@@ -256,100 +256,182 @@ def cameraPos(position):
         position=position
 def blitOffice(lastPrint):
     global eastLightState, westLightState, westDoorState, eastDoorState, curTime, _battery
-    printCooldown=333
+    printCooldown=100
     if curTime - lastPrint > printCooldown:
         if chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bothAnimAll")
-
-        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState:
-            screen.blit(chicalightbothdoor, (0, 0))
-
-        elif eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit bonnie both lights and doors")
+            lastPrint=curTime
+            return lastPrint
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit both bonnie and chica Left Door")
-
+            lastPrint=curTime
+            return lastPrint
+        
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit both bonnie and chica")
+            lastPrint=curTime
+            return lastPrint
+        
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit both bonnie and chica Lights Right Door")
+            lastPrint=curTime
+            return lastPrint
+        
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit both bonnie and chica Right Door")
+            lastPrint=curTime
+            return lastPrint
+        
+        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState:
+            screen.blit(chicalightbothdoor, (0, 0))
+            lastPrint=curTime
+            return lastPrint
+
+        elif eastLightState and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
+            print("will blit bonnie both lights and doors")
+            lastPrint=curTime
+            return lastPrint
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState and eastDoorState==False:
             screen.blit(officechica, (0, 0))
+            lastPrint=curTime
+            return lastPrint
 
         elif eastLightState and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bonnie both Lights Left Door")
-
-        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit both bonnie and chica Lights Right Door")
+            lastPrint=curTime
+            return lastPrint
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState:
             screen.blit(chicalightrightdoor, (0, 0))
+            lastPrint=curTime
+            return lastPrint
 
         elif eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bonnie both Lights Right Door")
+            lastPrint=curTime
+            return lastPrint
 
         elif _battery < 0:
             screen.blit(blackout, (0, 0))
+            lastPrint=curTime
+            return lastPrint
 
         elif eastLightState==False and westLightState and westDoorState==False and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit office Bonnie")
+            lastPrint=curTime
+            return lastPrint
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState==False and eastDoorState==False:
             screen.blit(officechica, (0, 0))
-
-        elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
-            print("will blit both bonnie and chica Right Door")
+            lastPrint=curTime
+            return lastPrint
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState==False and eastDoorState:
             screen.blit(chicarightdoor, (0, 0))
+            lastPrint=curTime
+            return lastPrint
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState and eastDoorState==False:
             screen.blit(chicaleftdoor, (0, 0))
+            lastPrint=curTime
+            return lastPrint
 
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState==False and westDoorState and eastDoorState:
             screen.blit(bothdoorchica, (0, 0))
+            lastPrint=curTime
+            return lastPrint
         
         elif eastLightState==False and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bonnie left light left door")
+            lastPrint=curTime
+            return lastPrint
 
         elif eastLightState==False and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bonnie left light right door")
+            lastPrint=curTime
+            return lastPrint
         
         elif eastLightState==False and westLightState and westDoorState and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bonnie left light both doors")
+            lastPrint=curTime
+            return lastPrint
         
         elif eastLightState and westLightState and westDoorState and eastDoorState:
             screen.blit(allnoanim, (0, 0))
+            lastPrint=curTime
+            return lastPrint
         
         elif eastLightState and westLightState and westDoorState and eastDoorState==False:
             screen.blit(bothlightleftdoor, (0, 0))
-        
-        elif eastLightState and westLightState and westDoorState and eastDoorState:
-            screen.blit(bothlights, (0, 0))
-
-        elif eastLightState and westLightState==False and westDoorState==False and eastDoorState==False:
-            screen.blit(officerightlight, (0, 0))
-        
-        elif eastLightState==False and westLightState and westDoorState==False and eastDoorState==False:
-            screen.blit(officeleftlight, (0, 0))
-            
-        elif eastLightState==False and westLightState==False and westDoorState and eastDoorState==False:
-            print("will blit left door")
-
-        elif eastLightState==False and westLightState==False and westDoorState==False and eastDoorState:
-            print("will blit right door")
-        
-        elif eastLightState==False and westLightState==False and westDoorState and eastDoorState:
-            print("will blit both doors")
-
-        elif eastLightState==False and westLightState==False and westDoorState==False and eastDoorState==False:
-            print("will blit normal office")
+            lastPrint=curTime
+            return lastPrint
         
         elif eastLightState and westLightState==False and westDoorState and eastDoorState:
             print("will blit both doors right light")
+            lastPrint=curTime
+            return lastPrint
 
         elif eastLightState==False and westLightState and westDoorState and eastDoorState:
             screen.blit(chicalightleftdoor, (0, 0))
+            lastPrint=curTime
+            return lastPrint
+
+        elif eastLightState and westLightState==False and eastDoorState and westDoorState==False:
+            print("will blit both right side")
+            lastPrint=curTime
+            return lastPrint
+
+        elif eastLightState==False and westLightState and eastDoorState==False and westDoorState:
+            print("both left side")
+            lastPrint=curTime
+            return lastPrint
+        
+        elif eastLightState and westLightState==False and eastDoorState==False and westDoorState:
+            print("will blit right light left door")
+            lastPrint=curTime
+            return lastPrint
+        
+        elif eastLightState==False and westLightState and eastDoorState and westDoorState==False:
+            print("left light right door")
+            lastPrint=curTime
+            return lastPrint 
+
+        elif eastLightState and westLightState and westDoorState==False and eastDoorState==False:
+            screen.blit(bothlights, (0, 0))
+            lastPrint=curTime
+            return lastPrint
+
+        elif eastLightState==False and westLightState==False and westDoorState and eastDoorState:
+            print("will blit both doors")
+            lastPrint=curTime
+            return lastPrint
+        
+        elif eastLightState and westLightState==False and westDoorState==False and eastDoorState==False:
+            screen.blit(officerightlight, (0, 0))
+            lastPrint=curTime
+            return lastPrint
+
+        elif eastLightState==False and westLightState==False and westDoorState and eastDoorState==False:
+            print("will blit left door")
+            lastPrint=curTime
+            return lastPrint
+        
+        elif eastLightState==False and westLightState and westDoorState==False and eastDoorState==False:
+            screen.blit(officeleftlight, (0, 0))
+            lastPrint=curTime
+            return lastPrint
+        
+        elif eastLightState==False and westLightState==False and westDoorState==False and eastDoorState:
+            print("will blit right door")
+            lastPrint=curTime
+            return lastPrint
+
+        elif eastLightState==False and westLightState==False and westDoorState==False and eastDoorState==False:
+            print("will blit normal office")
+            lastPrint=curTime
+            return lastPrint
 def timeLeft():
     global _6am,timeCounter
     timeCounter=0
@@ -513,7 +595,7 @@ def settingup():
         
         isKill()
         battery()
-        blitOffice(lastPrint)
+        lastPrint=blitOffice(lastPrint)
         # Game logic (e.g., update object positions)
         pressed=pygame.key.get_pressed()
         if pressed[pygame.K_LEFT]:
