@@ -278,9 +278,6 @@ def blitOffice(lastPrint):
         elif eastLightState and westLightState and westDoorState and eastDoorState==False and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit bonnie both Lights Left Door")
 
-        elif eastLightState==False and westLightState and westDoorState and eastDoorState:
-            screen.blit(chicalightleftdoor, (0, 0))
-
         elif chica.getRoom().lower() == "easthallcorner" and eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             print("will blit both bonnie and chica Lights Right Door")
 
@@ -335,8 +332,23 @@ def blitOffice(lastPrint):
         elif eastLightState==False and westLightState and westDoorState==False and eastDoorState==False:
             print("will blit left light")
             
-            
+        elif eastLightState==False and westLightState==False and westDoorState and eastDoorState==False:
+            print("will blit left door")
 
+        elif eastLightState==False and westLightState==False and westDoorState==False and eastDoorState:
+            print("will blit right door")
+        
+        elif eastLightState==False and westLightState==False and westDoorState and eastDoorState:
+            print("will blit both doors")
+
+        elif eastLightState==False and westLightState==False and westDoorState==False and eastDoorState==False:
+            print("will blit normal office")
+        
+        elif eastLightState and westLightState==False and westDoorState and eastDoorState:
+            print("will blit both doors right light")
+
+        elif eastLightState==False and westLightState and westDoorState and eastDoorState:
+            screen.blit(chicalightleftdoor, (0, 0))
 def timeLeft():
     global _6am,timeCounter
     timeCounter=0
