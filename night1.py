@@ -37,6 +37,9 @@ bonniebothdoors= pygame.image.load("officeimages/bonniebothdoors.png")
 bonniebothlightsrightdoor= pygame.image.load("officeimages/bonniebothlightsrightdoor.png")
 bonnieleftdoor= pygame.image.load("officeimages/bonnieleftdoor.png")
 bonnierightdoor= pygame.image.load("officeimages/bonnierightdoor.png")
+animall= pygame.image.load("officeimages/animall.png")
+bothanimleftdoor= pygame.image.load("officeimages/bothanimleftdoor.jpg")
+bothanim= pygame.image.load("officeimages/btohanim.jpg")
 pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 # https://www.youtube.com/watch?v=MwbXp6_C5i8 is the link to the video for threading and running multiple functions concurrently
@@ -278,17 +281,17 @@ def blitOffice():
     printCooldown=100
     if curTime - lastPrint > printCooldown:
         if (chica.getRoom().lower() == "easthallcorner" or chica.getRoom().lower()=="office") and eastLightState and westLightState and westDoorState and eastDoorState and (bonnie.getRoom().lower() == "westhallcorner" or bonnie.getRoom().lower()=="office"):
-            print("will blit bothAnimAll")
+            screen.blit(animall, (0, 0))
             lastPrint=curTime
             
 
         elif (chica.getRoom().lower() == "easthallcorner" or chica.getRoom().lower()=="office") and eastLightState and westLightState and westDoorState and eastDoorState==False and (bonnie.getRoom().lower() == "westhallcorner" or bonnie.getRoom().lower()=="office"):
-            print("will blit both bonnie and chica Left Door")
+            screen.blit(bothanimleftdoor, (0, 0))
             lastPrint=curTime
             
         
         elif (chica.getRoom().lower() == "easthallcorner" or chica.getRoom().lower()=="office") and eastLightState and westLightState and westDoorState==False and eastDoorState==False and (bonnie.getRoom().lower() == "westhallcorner" or bonnie.getRoom().lower()=="office"):
-            print("will blit both bonnie and chica")
+            screen.blit(bothanim, (0, 0))
             lastPrint=curTime
             
         
