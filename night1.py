@@ -40,6 +40,9 @@ bonnierightdoor= pygame.image.load("officeimages/bonnierightdoor.png")
 animall= pygame.image.load("officeimages/animall.png")
 bothanimleftdoor= pygame.image.load("officeimages/bothanimleftdoor.jpg")
 bothanim= pygame.image.load("officeimages/btohanim.jpg")
+bothanimrightdoor= pygame.image.load("officeimages/bothanimrightdoor.png")
+bonnieall= pygame.image.load("officeimages/bonnieall.png")
+bonniebothlightsleftdoor= pygame.image.load("officeimages/bonniebothlightsleftdoor.jpg")
 pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 # https://www.youtube.com/watch?v=MwbXp6_C5i8 is the link to the video for threading and running multiple functions concurrently
@@ -296,14 +299,9 @@ def blitOffice():
             
         
         elif (chica.getRoom().lower() == "easthallcorner" or chica.getRoom().lower()=="office") and eastLightState and westLightState and westDoorState==False and eastDoorState and (bonnie.getRoom().lower() == "westhallcorner" or bonnie.getRoom().lower()=="office"):
-            print("will blit both bonnie and chica Lights Right Door")
-            lastPrint=curTime
+             screen.blit(bothanimrightdoor, (0, 0))
+             lastPrint=curTime
             
-        
-        elif (chica.getRoom().lower() == "easthallcorner" or chica.getRoom().lower()=="office") and eastLightState and westLightState and westDoorState==False and eastDoorState and (bonnie.getRoom().lower() == "westhallcorner" or bonnie.getRoom().lower()=="office"):
-            print("will blit both bonnie and chica Right Door")
-            lastPrint=curTime
-    
 
         elif (chica.getRoom().lower() == "easthallcorner" or chica.getRoom().lower()=="office") and eastLightState and westLightState and westDoorState and eastDoorState:
             screen.blit(chicalightbothdoor, (0, 0))
@@ -311,7 +309,7 @@ def blitOffice():
             
 
         elif eastLightState and westLightState and westDoorState and eastDoorState and (bonnie.getRoom().lower() == "westhallcorner" or bonnie.getRoom().lower()=="office"):
-            print("will blit bonnie both lights and doors")
+            screen.blit(bonnieall, (0, 0))
             lastPrint=curTime
             
 
@@ -321,7 +319,7 @@ def blitOffice():
             
 
         elif eastLightState and westLightState and westDoorState and eastDoorState==False and (bonnie.getRoom().lower() == "westhallcorner" or bonnie.getRoom().lower()=="office"):
-            print("will blit bonnie both Lights Left Door")
+            screen.blit(bonniebothlightsleftdoor, (0, 0))
             lastPrint=curTime
             
 
@@ -332,13 +330,8 @@ def blitOffice():
 
 
         elif eastLightState and westLightState and westDoorState==False and eastDoorState and (bonnie.getRoom().lower() == "westhallcorner" or bonnie.getRoom().lower()=="office"):
-            print("will blit bonnie both Lights Right Door")
-
-        elif eastLightState and westLightState and westDoorState==False and eastDoorState and bonnie.getRoom().lower() == "westhallcorner":
             screen.blit(bonniebothlightsrightdoor, (0, 0))
-
             lastPrint=curTime
-            
 
         elif _battery < 0:
             screen.blit(blackout, (0, 0))
