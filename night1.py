@@ -335,6 +335,7 @@ def blitOffice():
 
         elif _battery < 0:
             screen.blit(blackout, (0, 0))
+            time.sleep(5)
             lastPrint=curTime
             
 
