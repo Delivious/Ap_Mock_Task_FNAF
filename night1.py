@@ -713,7 +713,11 @@ def settingup():
         elif pressed[pygame.K_0]:
             if curTime - lastPressedCam > cooldownCam:
                 camera(10)
-        
+        if pressed[pygame.K_LSHIFT] and pressed[pygame.K_t]:
+            with open("customNightSave.txt","w") as saveFile:
+                saveFile.write(f"{timeCounter}\n{freddif}\n{chicadif}\n{bonniedif}\n{foxydif}")
+        if pressed[pygame.K_ESCAPE]:
+            sys.exit()
 
         
 
@@ -723,6 +727,6 @@ def settingup():
     # Update the display
     pygame.display.flip() # or pygame.display.update()
 settingup()
-#Use of AI for pygame starter, fixing threads args and stopping all threads
+#Use of AI for pygame starter, fixing threads args and figuring out how to stopping all threads
 
 pygame.quit()
