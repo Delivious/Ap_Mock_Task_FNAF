@@ -97,3 +97,4 @@ CN()
 pygame.quit()
 # ^ Use of AI for pygame starter ^
 # ^ slight inhance with AI to fix some problems ^
+a
